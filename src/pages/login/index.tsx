@@ -31,7 +31,7 @@ const LoginPage = () => {
     }
   }
   return (
-    <div className="w-full h-[100vh] flex-col justify-center flex items-center">
+    <div className="w-full h-full flex-col justify-center flex items-center p-8">
       <Card className="p-8 space-y-6 max-w-md w-full">
         <span className="text-2xl">Painel de Métricas</span>
         <form onSubmit={handleSubmit} className="flex flex-col space-y-4">

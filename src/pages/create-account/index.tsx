@@ -33,7 +33,7 @@ const CreateAccountPage = () => {
     }
   }
   return (
-    <div className="w-full h-[100vh] flex-col justify-center flex items-center">
+    <div className="w-full h-full flex-col justify-center p-8 flex items-center">
       <Card className="p-8 space-y-6 max-w-md w-full">
         <span className="text-2xl">Crie sua conta</span>
         <form onSubmit={handleSubmit} className="flex flex-col space-y-4">

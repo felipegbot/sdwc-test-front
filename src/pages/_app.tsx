@@ -5,6 +5,7 @@ import { Provider } from "react-redux";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { NextUIProvider } from "@nextui-org/system";
+import { SidebarComponent } from "@/components/sidebar";
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
@@ -12,7 +13,10 @@ export default function App({ Component, pageProps }: AppProps) {
       <Provider store={store}>
         <NextUIProvider>
           <ToastContainer theme="dark" />
-          <Component {...pageProps} />
+          <div className="w-full h-screen flex-row flex">
+            <SidebarComponent />
+            <Component {...pageProps} />
+          </div>
         </NextUIProvider>
       </Provider>
     </div>
