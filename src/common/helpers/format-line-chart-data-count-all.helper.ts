@@ -1,3 +1,4 @@
+import mmt from "@/lib/moment";
 import { ChartData, Dataset } from "../interfaces/chart-data.interface";
 import { FormattedVisit } from "../interfaces/formatted-visit.interface";
 
@@ -8,7 +9,7 @@ export const formatLineChartDataCountAll = (
     return { labels: [], datasets: [] };
   }
   const color = `hsla(${Math.floor(Math.random() * 360)}, 100%, 50%, 1)`;
-  //
+
   // here we presume that the first visit has all the links
   const datasets: Dataset[] = [
     {
@@ -21,7 +22,7 @@ export const formatLineChartDataCountAll = (
 
   const labels: string[] = [];
   data.forEach((visit) => {
-    labels.push(visit.date);
+    labels.push(mmt(visit.date).format("DD/MM"));
   });
 
   return { labels, datasets };

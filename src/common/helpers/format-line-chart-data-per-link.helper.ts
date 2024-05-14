@@ -1,3 +1,4 @@
+import mmt from "@/lib/moment";
 import { ChartData, Dataset } from "../interfaces/chart-data.interface";
 import { FormattedVisit } from "../interfaces/formatted-visit.interface";
 
@@ -21,7 +22,7 @@ export const formatLineChartDataPerLink = (
   const labels: string[] = [];
 
   data.forEach((visit) => {
-    labels.push(visit.date);
+    labels.push(mmt(visit.date).format("DD/MM"));
     visit.clicks.forEach((click) => {
       const targetDataset = datasets.find(
         (dataset) => dataset.label === click.link,
