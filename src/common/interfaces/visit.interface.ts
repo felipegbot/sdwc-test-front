@@ -3,4 +3,5 @@ export interface Visit {
   date: Date;
   link_id: string;
   clicks: number;
+  link_url?: string;
 }

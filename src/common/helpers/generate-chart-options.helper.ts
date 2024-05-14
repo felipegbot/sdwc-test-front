@@ -4,6 +4,7 @@ export const generateChartOption = (title: string, values: number[]) => {
     scales: {
       y: {
         max: Math.max(...(values ?? [])) + 10,
+        min: 0,
       },
     },
 

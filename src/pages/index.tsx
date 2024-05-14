@@ -3,8 +3,8 @@ import { formatLineChartDataPerLink } from "@/common/helpers/format-line-chart-d
 import { generateChartOption } from "@/common/helpers/generate-chart-options.helper";
 import { useGetAllLinksVisits } from "@/common/hooks/use-get-all-links-visits.hook";
 import { useWindowSize } from "@/common/hooks/use-window-size.hook";
-import { BaseComponent } from "@/components/base-content";
 import { DatePickerWithRange } from "@/components/date-range-picker";
+import { TitleComponent } from "@/components/title";
 import { Card } from "@/components/ui/card";
 import { useState } from "react";
 import { Line } from "react-chartjs-2";
@@ -23,9 +23,12 @@ export default function Home() {
   };
 
   return (
-    <div className="h-full w-full flex flex-col p-8 space-y-4">
-      <BaseComponent title="Gráficos" />
-      <DatePickerWithRange onChange={onDateChange} />
+    <div className="h-full w-full flex flex-col px-8 pb-8 space-y-4">
+      <TitleComponent title="Gráficos" />
+      <div className="flex flex-col items-center space-y-1">
+        <span> Escolha o período</span>
+        <DatePickerWithRange onChange={onDateChange} />
+      </div>
       <Card className={`${width < 768 ? "h-full" : "-1/2"}`}>
         <Line
           data={allLinksData}
