@@ -68,7 +68,7 @@ const CreateAccountPage = () => {
             />
           </div>
           <div className="flex flex-col w-fit space-y-2">
-            <Button type="submit" className="w-min">
+            <Button type="submit" className="w-min bg-white text-black">
               Criar conta
             </Button>
             <span>

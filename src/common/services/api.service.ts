@@ -15,9 +15,9 @@ Api.interceptors.request.use(async (config) => {
     ? (JSON.parse(localStorage.getItem("auth-data") as string) as AuthData)
     : null;
 
-  if (authData?.token) {
+  if (authData?.access_token) {
     if (config.headers)
-      config.headers.Authorization = `Bearer ${authData.token}`;
+      config.headers.Authorization = `Bearer ${authData.access_token}`;
   }
   return config;
 });
@@ -32,10 +32,9 @@ Api.interceptors.response.use(
         new Error("Não foi possível se conectar com o servidor."),
       );
     const data = error.response?.data as any;
-    console.log(data);
     if (data?.errors?.[0]?.message === "token-expired") {
       localStorage.clear();
-      // return window.location.replace("/login");
+      return window.location.replace("/login");
     }
     return Promise.reject(error);
   },

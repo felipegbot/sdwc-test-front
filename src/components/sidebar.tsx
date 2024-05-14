@@ -17,7 +17,7 @@ const SidebarItem: React.FC<{
       className={`flex flex-row items-center transition-colors duration-300 mx-3 my-1 rounded-lg justify-start p-2  pl-3 ${
         location === url
           ? "bg-white text-black"
-          : "text-white hover:bg-secondary hover:bg-black hover:bg-opacity-20"
+          : "text-white hover:bg-black hover:bg-opacity-20"
       }`}
     >
       {icon}
@@ -34,7 +34,7 @@ export const SidebarComponent = () => {
     if (width > 768) return;
     setOpen(!open);
   };
-
+  if (["/login", "/create-account", "/logout"].includes(location)) return null;
   return (
     <>
       <div

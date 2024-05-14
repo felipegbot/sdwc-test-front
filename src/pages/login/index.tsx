@@ -8,10 +8,12 @@ import React, { FormEvent } from "react";
 import { toast } from "react-toastify";
 import { toastError } from "@/lib/toastify/toastError";
 import Link from "next/link";
+import { useAppDispatch } from "@/lib/redux/store";
+import { setAuthData } from "@/lib/redux/reducers/auth-data.reducer";
 
 const LoginPage = () => {
   const router = useRouter();
-
+  const dispatch = useAppDispatch();
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
 
@@ -20,11 +22,12 @@ const LoginPage = () => {
     const password = formData.get("password");
 
     try {
-      await Api.post("/auth/authenticate", {
+      const { data } = await Api.post("/auth/authenticate", {
         username,
         password,
       });
       toast.success("Login efetuado com sucesso");
+      dispatch(setAuthData(data));
       router.push("/");
     } catch (error) {
       toastError(error);
@@ -57,7 +60,7 @@ const LoginPage = () => {
             />
           </div>
           <div className="flex flex-col w-fit space-y-2">
-            <Button type="submit" className="w-min">
+            <Button type="submit" className="w-min bg-white text-black">
               Login
             </Button>
             <span>
