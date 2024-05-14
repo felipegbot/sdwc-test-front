@@ -94,7 +94,7 @@ export const SidebarComponent = () => {
             <SidebarItem
               location={location}
               label="Sair"
-              icon={<LogOut color="red" />}
+              icon={<LogOut color="gray" />}
               url="/logout"
             />
           </div>
