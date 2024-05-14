@@ -32,9 +32,10 @@ Api.interceptors.response.use(
         new Error("Não foi possível se conectar com o servidor."),
       );
     const data = error.response?.data as any;
+    console.log(data);
     if (data?.errors?.[0]?.message === "token-expired") {
       localStorage.clear();
-      return window.location.replace("/login");
+      // return window.location.replace("/login");
     }
     return Promise.reject(error);
   },
