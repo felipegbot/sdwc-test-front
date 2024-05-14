@@ -13,14 +13,12 @@ export const useGetAllLinksVisits = (date?: DateRange) => {
     return data.visits as FormattedVisit[];
   };
 
-  const { data, isFetching, refetch } = useQuery({
+  const { data } = useQuery({
     queryKey: ["allLinksVisits", date],
     queryFn: fetchAllLinksVisits,
   });
 
   return {
     visits: data,
-    isFetching,
-    refetch,
   };
 };

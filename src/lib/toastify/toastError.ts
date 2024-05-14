@@ -17,6 +17,5 @@ export function toastError(error: any) {
     else if (error.message) message = error.message;
     else if (typeof error === "string") message = error;
   }
-  console.log(message);
   toast.error(message);
 }

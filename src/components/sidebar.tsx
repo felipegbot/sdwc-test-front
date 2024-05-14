@@ -1,5 +1,5 @@
 import { ReactElement, useState } from "react";
-import { ChevronLeft, LineChart, Table2 } from "lucide-react";
+import { ChevronLeft, Database, LineChart, LogOut, Table2 } from "lucide-react";
 import { useWindowSize } from "@/common/hooks/use-window-size.hook";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -38,7 +38,7 @@ export const SidebarComponent = () => {
   return (
     <>
       <div
-        className={`absolute w-screen z-10 flex flex-row justify-between items-center px-2 md:px-5`}
+        className={`absolute w-screen z-20 flex flex-row justify-between items-center px-2 md:px-5`}
       >
         {width < 768 && (
           <button
@@ -60,28 +60,42 @@ export const SidebarComponent = () => {
         } transition-all`}
       >
         <div
-          className={`relative z-20 flex flex-col h-screen justify-between bg-secondary shadow-lg md:w-[68px]`}
+          className={`relative z-30 flex flex-col h-screen justify-between bg-secondary shadow-lg md:w-[68px]`}
           style={{
             transition: "width 0.2s ease-in-out",
             width: open ? 224 : 0,
           }}
         >
-          <div className={`flex flex-col space-y-4`}>
-            <div className="flex items-center justify-center my-3 p-0 shadow pb-[11px]">
-              <AppIcon />
-            </div>
+          <div className={`flex flex-col h-full justify-between`}>
+            <div className="space-y-4">
+              <div className="flex items-center justify-center my-3 p-0 shadow pb-[11px]">
+                <AppIcon />
+              </div>
 
+              <SidebarItem
+                location={location}
+                label="Gráficos"
+                icon={<LineChart />}
+                url="/"
+              />
+              <SidebarItem
+                location={location}
+                label="Tabelas"
+                icon={<Table2 />}
+                url="/tables"
+              />
+              <SidebarItem
+                location={location}
+                label="Dados"
+                icon={<Database />}
+                url="/data"
+              />
+            </div>
             <SidebarItem
               location={location}
-              label="Gráficos"
-              icon={<LineChart />}
-              url="/"
-            />
-            <SidebarItem
-              location={location}
-              label="Tabelas"
-              icon={<Table2 />}
-              url="/tables"
+              label="Sair"
+              icon={<LogOut color="red" />}
+              url="/logout"
             />
           </div>
         </div>
@@ -89,7 +103,7 @@ export const SidebarComponent = () => {
       {width < 768 && (
         <div
           onClick={toggleOpen}
-          className={`absolute top-0 left-0 z-0 ${
+          className={`absolute top-0 left-0 z-10 ${
             open ? "w-screen opacity-80" : "w-screen opacity-0 invisible"
           } h-screen bg-secondary transition-opacity`}
         />

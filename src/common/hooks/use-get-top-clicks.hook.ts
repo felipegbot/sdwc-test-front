@@ -13,14 +13,12 @@ export const useGetTopLinks = (date?: DateRange) => {
     return data.visits as Visit[];
   };
 
-  const { data, isFetching, refetch } = useQuery({
+  const { data } = useQuery({
     queryKey: ["topLinks", date],
     queryFn: fetchTopLinks,
   });
 
   return {
     visits: data,
-    isFetching,
-    refetch,
   };
 };

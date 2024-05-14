@@ -1,4 +1,3 @@
-import { useWindowSize } from "@/common/hooks/use-window-size.hook";
 import { DatePickerWithRange } from "@/components/date-range-picker";
 import { TitleComponent } from "@/components/title";
 import { Card } from "@/components/ui/card";
@@ -17,7 +16,6 @@ import { useGetTopLinks } from "@/common/hooks/use-get-top-clicks.hook";
 const TablePage = () => {
   const [date, setDate] = useState<DateRange | undefined>();
   const { visits } = useGetTopLinks(date);
-  const { width } = useWindowSize();
 
   const onDateChange = (date?: DateRange) => {
     setDate(date);
@@ -31,8 +29,12 @@ const TablePage = () => {
         <DatePickerWithRange onChange={onDateChange} />
       </div>
 
-      <Card className="flex flex-col w-full items-center py-8">
+      <Card className="flex flex-col w-full items-center py-8 px-2">
         <span>Top 5 links mais acessados no período</span>
+        <span>
+          Total de clicks -{" "}
+          {visits?.reduce((acc, curr) => acc + curr.clicks, 0) ?? 0}{" "}
+        </span>
         <Table className="max-w-2xl w-full m-auto ">
           <TableHeader>
             <TableRow>
