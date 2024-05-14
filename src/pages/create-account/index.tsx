@@ -9,23 +9,25 @@ import { toast } from "react-toastify";
 import { toastError } from "@/lib/toastify/toastError";
 import Link from "next/link";
 
-const LoginPage = () => {
+const CreateAccountPage = () => {
   const router = useRouter();
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
 
     const formData = new FormData(event.currentTarget);
-    const username = formData.get("email");
+    const name = formData.get("name");
+    const email = formData.get("email");
     const password = formData.get("password");
 
     try {
-      await Api.post("/auth/authenticate", {
-        username,
+      await Api.post("/user/create", {
+        name,
+        email,
         password,
       });
-      toast.success("Login efetuado com sucesso");
-      router.push("/");
+      toast.success("Conta criada com sucesso");
+      router.push("/login");
     } catch (error) {
       toastError(error);
     }
@@ -33,8 +35,18 @@ const LoginPage = () => {
   return (
     <div className="w-full h-[100vh] flex-col justify-center flex items-center">
       <Card className="p-8 space-y-6 max-w-md w-full">
-        <span className="text-2xl">Painel de Métricas</span>
+        <span className="text-2xl">Crie sua conta</span>
         <form onSubmit={handleSubmit} className="flex flex-col space-y-4">
+          <div>
+            <Label htmlFor="name">Insira seu nome</Label>
+            <Input
+              type="text"
+              name="name"
+              id="name"
+              placeholder="fulano da silva"
+              required
+            />
+          </div>
           <div>
             <Label htmlFor="email">Insira seu email</Label>
             <Input
@@ -45,7 +57,6 @@ const LoginPage = () => {
               required
             />
           </div>
-
           <div>
             <Label htmlFor="password">Insira sua senha</Label>
             <Input
@@ -58,14 +69,14 @@ const LoginPage = () => {
           </div>
           <div className="flex flex-col w-fit space-y-2">
             <Button type="submit" className="w-min">
-              Login
+              Criar conta
             </Button>
             <span>
               Clique{" "}
-              <Link className="hover:underline " href="/create-account">
+              <Link className="hover:underline " href="/login">
                 aqui
               </Link>{" "}
-              para criar uma conta
+              para fazer login
             </span>
           </div>
         </form>
@@ -74,4 +85,4 @@ const LoginPage = () => {
   );
 };
 
-export default LoginPage;
+export default CreateAccountPage;
