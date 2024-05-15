@@ -42,7 +42,7 @@ export const LinkPage = () => {
   return (
     <div className="h-full w-full flex flex-col px-8 pb-8 space-y-4">
       <TitleComponent title={`Gráfico do link com id ${params?.id}`} />
-      <div className="flex flex-row justify-center space-x-4">
+      <div className="flex flex-col md:flex-row justify-center space-y-4 md:space-y-0 md:space-x-4">
         <div className="flex flex-col items-center space-y-1">
           <span>Escolha o período</span>
           <DatePickerWithRange onChange={onDateChange} />

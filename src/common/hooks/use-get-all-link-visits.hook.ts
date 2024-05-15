@@ -5,7 +5,6 @@ import { DateRange } from "react-day-picker";
 import mmt from "@/lib/moment";
 
 export const useGetAllLinkVisits = (linksId: string[], date?: DateRange) => {
-  console.log(linksId.join(","));
   const fetchAllLinksVisits = async (): Promise<FormattedVisit[]> => {
     let url = `/visits/by-links?linkIds=${linksId.join(",")}`;
     if (date?.from) url += `&start_date=${mmt(date.from).format("YYYY-MM-DD")}`;
