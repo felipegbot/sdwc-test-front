@@ -9,15 +9,17 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { useGetAllLinks } from "@/common/hooks/use-get-all-links.hook";
-import { AlertTriangle, Repeat, Trash2 } from "lucide-react";
+import { AlertTriangle, EyeIcon, Repeat, Trash2 } from "lucide-react";
 import { FormEvent, useState } from "react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { toastError } from "@/lib/toastify/toastError";
 import Api from "@/common/services/api.service";
 import { toast } from "react-toastify";
+import { useRouter } from "next/router";
 
 const TablePage = () => {
+  const router = useRouter();
   const { links, refetch } = useGetAllLinks();
 
   const [currentConfirmId, setCurrentConfirmId] = useState<string | null>(null);
@@ -71,6 +73,7 @@ const TablePage = () => {
             <TableRow>
               <TableHead className="w-[100px]">Id</TableHead>
               <TableHead>Url</TableHead>
+              <TableHead>Ações</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
@@ -79,15 +82,23 @@ const TablePage = () => {
                 <TableCell className="font-medium">{link.id}</TableCell>
                 <TableCell>{link.url}</TableCell>
                 <TableCell>
-                  <div className="cursor-pointer">
+                  <div className="flex flex-row space-x-2">
                     {currentConfirmId === link.id ? (
                       <AlertTriangle
+                        className="cursor-pointer"
                         color="red"
                         onClick={() => handleDelete(link.id)}
                       />
                     ) : (
-                      <Trash2 onClick={() => setCurrentConfirmId(link.id)} />
+                      <Trash2
+                        className="cursor-pointer"
+                        onClick={() => setCurrentConfirmId(link.id)}
+                      />
                     )}
+                    <EyeIcon
+                      className="cursor-pointer"
+                      onClick={() => router.push(`/link/${link.id}`)}
+                    />
                   </div>
                 </TableCell>
               </TableRow>
